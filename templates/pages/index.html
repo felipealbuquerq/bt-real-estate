@@ -1,5 +1,274 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Home</h1>
+<!-- Showcase -->
+<section id="showcase">
+    <div class="container text-center">
+        <div class="home-search p-5">
+            <div class="overlay p-5">
+                <h1 class="display-4 mb-4">
+                    Encontrar Uma Casa Nunca Foi Tão Fácil
+                </h1>
+                <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores
+                    eveniet vel nostrum magnam
+                    voluptatum tempore! Consectetur, id commodi!</p>
+                <div class="search">
+                    <form action="search.html">
+                        <!-- Form Row 1 -->
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label class="sr-only">Palavras-chave</label>
+                                <input type="text" name="keywords" class="form-control"
+                                    placeholder="Palavra-chave (Piscina, Garagem, etc)">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label class="sr-only">Cidade</label>
+                                <input type="text" name="city" class="form-control" placeholder="Cidade">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label class="sr-only">Estado</label>
+                                <select name="state" class="form-control">
+                                    <option selected="true" disabled="disabled">Estado (todos)</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Form Row 2 -->
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label class="sr-only">Quarto</label>
+                                <select name="bedrooms" class="form-control">
+                                    <option selected="true" disabled="disabled">Quarto (todos)</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <select name="price" class="form-control" id="type">
+                                    <option selected="true" disabled="disabled">Preço Máximo (qualquer)</option>
+                                    <option value="100000">R$100,000</option>
+                                    <option value="200000">R$200,000</option>
+                                    <option value="300000">R$300,000</option>
+                                    <option value="400000">R$400,000</option>
+                                    <option value="500000">R$500,000</option>
+                                    <option value="600000">R$600,000</option>
+                                    <option value="700000">R$700,000</option>
+                                    <option value="800000">R$800,000</option>
+                                    <option value="900000">R$900,000</option>
+                                    <option value="1000000">R$1M+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-block mt-4" type="submit">Procurar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Listings -->
+<section id="listings" class="py-5">
+    <div class="container">
+        <h3 class="text-center mb-3">Últimos cadastros</h3>
+        <div class="row">
+            <!-- Listing 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card listing-preview">
+                    <img class="card-img-top" src="assets/img/homes/home-1.jpg" alt="">
+                    <div class="card-img-overlay">
+                        <h2>
+                            <span class="badge badge-secondary text-white">R$490,000</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="listing-heading text-center">
+                            <h4 class="text-primary">Rua das Orquídeas, 453</h4>
+                            <p>
+                                <i class="fas fa-map-marker text-secondary"></i> Presidente Prudente SP, 02062</p>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-th-large"></i> m&sup2;: 2500</div>
+                            <div class="col-6">
+                                <i class="fas fa-car"></i> Garagem: 2</div>
+                        </div>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-bed"></i> Quartos: 3</div>
+                            <div class="col-6">
+                                <i class="fas fa-bath"></i> Banheiros: 2</div>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-user"></i> João da Silva</div>
+                        </div>
+                        <div class="row text-secondary pb-2">
+                            <div class="col-6">
+                                <i class="fas fa-clock"></i> 5 dias atrás</div>
+                        </div>
+                        <hr>
+                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listing 2 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card listing-preview">
+                    <img class="card-img-top" src="assets/img/homes/home-2.jpg" alt="">
+                    <div class="card-img-overlay">
+                        <h2>
+                            <span class="badge badge-secondary text-white">R$550,000</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="listing-heading text-center">
+                            <h4 class="text-primary">Av Manoel Goulart, 25</h4>
+                            <p>
+                                <i class="fas fa-map-marker text-secondary"></i> Campo Grande MS, 01801</p>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-th-large"></i> m&sup2;: 3200</div>
+                            <div class="col-6">
+                                <i class="fas fa-car"></i> Garagem: 1</div>
+                        </div>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-bed"></i> Quartos: 4</div>
+                            <div class="col-6">
+                                <i class="fas fa-bath"></i> Banheiros: 2</div>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-user"></i> Patrícia Alves</div>
+                        </div>
+                        <div class="row text-secondary pb-2">
+                            <div class="col-6">
+                                <i class="fas fa-clock"></i> 8 dias atrás</div>
+                        </div>
+                        <hr>
+                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listing 3 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card listing-preview">
+                    <img class="card-img-top" src="assets/img/homes/home-3.jpg" alt="">
+                    <div class="card-img-overlay">
+                        <h2>
+                            <span class="badge badge-secondary text-white">R$580,000</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="listing-heading text-center">
+                            <h4 class="text-primary">Rua dos Castores, 1889</h4>
+                            <p>
+                                <i class="fas fa-map-marker text-secondary"></i> Bauru SP, 01915</p>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-th-large"></i> m&sup2;: 3107</div>
+                            <div class="col-6">
+                                <i class="fas fa-car"></i> Garagem: 0</div>
+                        </div>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-bed"></i> Quartos: 4</div>
+                            <div class="col-6">
+                                <i class="fas fa-bath"></i> Banheiros: 3</div>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary">
+                            <div class="col-6">
+                                <i class="fas fa-user"></i>Alfredo Pereira</div>
+                        </div>
+                        <div class="row text-secondary pb-2">
+                            <div class="col-6">
+                                <i class="fas fa-clock"></i> 5 dias atrás</div>
+                        </div>
+                        <hr>
+                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="services" class="py-5 bg-secondary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <i class="fas fa-comment fa-4x mr-4"></i>
+                <hr>
+                <h3>Consultoria</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae,
+                    provident iste consequatur
+                    hic dignissimos ratione ea quae.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-home fa-4x mr-4"></i>
+                <hr>
+                <h3>Gerenciamento do imóvel</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae,
+                    provident iste consequatur
+                    hic dignissimos ratione ea quae.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-suitcase fa-4x mr-4"></i>
+                <hr>
+                <h3>Alugue & Venda</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, debitis nam! Repudiandae,
+                    provident iste consequatur
+                    hic dignissimos ratione ea quae.</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
