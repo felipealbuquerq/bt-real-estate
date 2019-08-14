@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
 <!-- Showcase -->
@@ -108,134 +109,58 @@
     <div class="container">
         <h3 class="text-center mb-3">Últimos cadastros</h3>
         <div class="row">
-            <!-- Listing 1 -->
+            {% if listings %}
+            {% for listing in listings %}
+
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card listing-preview">
-                    <img class="card-img-top" src="assets/img/homes/home-1.jpg" alt="">
+                    <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
                     <div class="card-img-overlay">
                         <h2>
-                            <span class="badge badge-secondary text-white">R$490,000</span>
+                            <span class="badge badge-secondary text-white"> R${{ listing.price | intcomma }}</span>
                         </h2>
                     </div>
                     <div class="card-body">
                         <div class="listing-heading text-center">
-                            <h4 class="text-primary">Rua das Orquídeas, 453</h4>
+                            <h4 class="text-primary"> {{ listing.title }}</h4>
                             <p>
-                                <i class="fas fa-map-marker text-secondary"></i> Presidente Prudente SP, 02062</p>
+                                <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }},
+                                {{ listing.zipcode }}</p>
                         </div>
                         <hr>
                         <div class="row py-2 text-secondary">
                             <div class="col-6">
-                                <i class="fas fa-th-large"></i> m&sup2;: 2500</div>
+                                <i class="fas fa-th-large"></i> m&sup2;: {{ listing.sqft }}</div>
                             <div class="col-6">
-                                <i class="fas fa-car"></i> Garagem: 2</div>
+                                <i class="fas fa-car"></i> Garagem: {{ listing.garage }}</div>
                         </div>
                         <div class="row py-2 text-secondary">
                             <div class="col-6">
-                                <i class="fas fa-bed"></i> Quartos: 3</div>
+                                <i class="fas fa-bed"></i> Quartos: {{ listing.bedrooms }}</div>
                             <div class="col-6">
-                                <i class="fas fa-bath"></i> Banheiros: 2</div>
+                                <i class="fas fa-bath"></i> Banheiros: {{ listing.bathrooms }}</div>
                         </div>
                         <hr>
                         <div class="row py-2 text-secondary">
                             <div class="col-6">
-                                <i class="fas fa-user"></i> João da Silva</div>
+                                <i class="fas fa-user"></i> {{ listing.realtor }}</div>
                         </div>
                         <div class="row text-secondary pb-2">
                             <div class="col-6">
-                                <i class="fas fa-clock"></i> 5 dias atrás</div>
+                                <i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
                         </div>
                         <hr>
-                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
+                        <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Mais informações</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Listing 2 -->
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card listing-preview">
-                    <img class="card-img-top" src="assets/img/homes/home-2.jpg" alt="">
-                    <div class="card-img-overlay">
-                        <h2>
-                            <span class="badge badge-secondary text-white"> R$550,000</span>
-                        </h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="listing-heading text-center">
-                            <h4 class="text-primary"> Av Manoel Goulart, 25</h4>
-                            <p>
-                                <i class="fas fa-map-marker text-secondary"></i> Campo Grande MS, 01801</p>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-th-large"></i> m&sup2;: 3200</div>
-                            <div class="col-6">
-                                <i class="fas fa-car"></i> Garagem: 1</div>
-                        </div>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-bed"></i> Quartos: 4</div>
-                            <div class="col-6">
-                                <i class="fas fa-bath"></i> Banheiros: 2</div>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-user"></i> Patrícia Alves</div>
-                        </div>
-                        <div class="row text-secondary pb-2">
-                            <div class="col-6">
-                                <i class="fas fa-clock"></i> 8 dias atrás</div>
-                        </div>
-                        <hr>
-                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
-                    </div>
-                </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-md-12">
+                <p>Não existem imóveis em destaque.</p>
             </div>
-
-            <!-- Listing 3 -->
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card listing-preview">
-                    <img class="card-img-top" src="assets/img/homes/home-3.jpg" alt="">
-                    <div class="card-img-overlay">
-                        <h2>
-                            <span class="badge badge-secondary text-white">R$580,000</span>
-                        </h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="listing-heading text-center">
-                            <h4 class="text-primary"> Rua dos Castores, 1889</h4>
-                            <p>
-                                <i class="fas fa-map-marker text-secondary"></i> Bauru SP, 01915</p>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-th-large"></i> m&sup2;: 3107</div>
-                            <div class="col-6">
-                                <i class="fas fa-car"></i> Garagem: 0</div>
-                        </div>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-bed"></i> Quartos: 4</div>
-                            <div class="col-6">
-                                <i class="fas fa-bath"></i> Banheiros: 3</div>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-user"></i> Alfredo Pereira</div>
-                        </div>
-                        <div class="row text-secondary pb-2">
-                            <div class="col-6">
-                                <i class="fas fa-clock"></i> 5 dias atrás</div>
-                        </div>
-                        <hr>
-                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
-                    </div>
-                </div>
-            </div>
+            {% endif %}
 
         </div>
     </div>

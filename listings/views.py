@@ -9,8 +9,8 @@ from django.core.paginator import (
 
 
 def index(request):
-    listings = Listing.objects.all()
-    paginator = Paginator(listings, 6)
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True)
+    paginator = Paginator(listings, 12)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     context = {
