@@ -14,7 +14,7 @@
                     eveniet vel nostrum magnam
                     voluptatum tempore! Consectetur, id commodi!</p>
                 <div class="search">
-                    <form action="search.html">
+                    <form action="{% url 'search' %}">
                         <!-- Form Row 1 -->
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
@@ -32,33 +32,9 @@
                                 <label class="sr-only">Estado</label>
                                 <select name="state" class="form-control">
                                     <option selected="true" disabled="disabled">Estado (todos)</option>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
+                                    {% for key, value in state_choices.items %}
+                                    <option value="{{ key }}">{{ value }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -68,31 +44,17 @@
                                 <label class="sr-only">Quarto</label>
                                 <select name="bedrooms" class="form-control">
                                     <option selected="true" disabled="disabled">Quarto (todos)</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                    {% for key, value in bedroom_choices.items %}
+                                    <option value="{{ key }}">{{ value }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <select name="price" class="form-control" id="type">
                                     <option selected="true" disabled="disabled">Preço Máximo (qualquer)</option>
-                                    <option value="100000">R$100,000</option>
-                                    <option value="200000">R$200,000</option>
-                                    <option value="300000">R$300,000</option>
-                                    <option value="400000">R$400,000</option>
-                                    <option value="500000">R$500,000</option>
-                                    <option value="600000">R$600,000</option>
-                                    <option value="700000">R$700,000</option>
-                                    <option value="800000">R$800,000</option>
-                                    <option value="900000">R$900,000</option>
-                                    <option value="1000000">R$1M+</option>
+                                    {% for key, value in price_choices.items %}
+                                    <option value="{{ key }}">{{ value }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
