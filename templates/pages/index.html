@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
 <!-- Showcase -->
@@ -13,7 +14,7 @@
                     eveniet vel nostrum magnam
                     voluptatum tempore! Consectetur, id commodi!</p>
                 <div class="search">
-                    <form action="search.html">
+                    <form action="{% url 'search' %}">
                         <!-- Form Row 1 -->
                         <div class="form-row">
                             <div class="col-md-4 mb-3">
@@ -31,33 +32,9 @@
                                 <label class="sr-only">Estado</label>
                                 <select name="state" class="form-control">
                                     <option selected="true" disabled="disabled">Estado (todos)</option>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
+                                    {% for key, value in state_choices.items %}
+                                    <option value="{{ key }}">{{ value }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -67,31 +44,17 @@
                                 <label class="sr-only">Quarto</label>
                                 <select name="bedrooms" class="form-control">
                                     <option selected="true" disabled="disabled">Quarto (todos)</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
+                                    {% for key, value in bedroom_choices.items %}
+                                    <option value="{{ key }}">{{ value }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <select name="price" class="form-control" id="type">
                                     <option selected="true" disabled="disabled">Preço Máximo (qualquer)</option>
-                                    <option value="100000">R$100,000</option>
-                                    <option value="200000">R$200,000</option>
-                                    <option value="300000">R$300,000</option>
-                                    <option value="400000">R$400,000</option>
-                                    <option value="500000">R$500,000</option>
-                                    <option value="600000">R$600,000</option>
-                                    <option value="700000">R$700,000</option>
-                                    <option value="800000">R$800,000</option>
-                                    <option value="900000">R$900,000</option>
-                                    <option value="1000000">R$1M+</option>
+                                    {% for key, value in price_choices.items %}
+                                    <option value="{{ key }}">{{ value }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -108,134 +71,58 @@
     <div class="container">
         <h3 class="text-center mb-3">Últimos cadastros</h3>
         <div class="row">
-            <!-- Listing 1 -->
+            {% if listings %}
+            {% for listing in listings %}
+
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card listing-preview">
-                    <img class="card-img-top" src="assets/img/homes/home-1.jpg" alt="">
+                    <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
                     <div class="card-img-overlay">
                         <h2>
-                            <span class="badge badge-secondary text-white">R$490,000</span>
+                            <span class="badge badge-secondary text-white"> R${{ listing.price | intcomma }}</span>
                         </h2>
                     </div>
                     <div class="card-body">
                         <div class="listing-heading text-center">
-                            <h4 class="text-primary">Rua das Orquídeas, 453</h4>
+                            <h4 class="text-primary"> {{ listing.title }}</h4>
                             <p>
-                                <i class="fas fa-map-marker text-secondary"></i> Presidente Prudente SP, 02062</p>
+                                <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }},
+                                {{ listing.zipcode }}</p>
                         </div>
                         <hr>
                         <div class="row py-2 text-secondary">
                             <div class="col-6">
-                                <i class="fas fa-th-large"></i> m&sup2;: 2500</div>
+                                <i class="fas fa-th-large"></i> m&sup2;: {{ listing.sqft }}</div>
                             <div class="col-6">
-                                <i class="fas fa-car"></i> Garagem: 2</div>
+                                <i class="fas fa-car"></i> Garagem: {{ listing.garage }}</div>
                         </div>
                         <div class="row py-2 text-secondary">
                             <div class="col-6">
-                                <i class="fas fa-bed"></i> Quartos: 3</div>
+                                <i class="fas fa-bed"></i> Quartos: {{ listing.bedrooms }}</div>
                             <div class="col-6">
-                                <i class="fas fa-bath"></i> Banheiros: 2</div>
+                                <i class="fas fa-bath"></i> Banheiros: {{ listing.bathrooms }}</div>
                         </div>
                         <hr>
                         <div class="row py-2 text-secondary">
                             <div class="col-6">
-                                <i class="fas fa-user"></i> João da Silva</div>
+                                <i class="fas fa-user"></i> {{ listing.realtor }}</div>
                         </div>
                         <div class="row text-secondary pb-2">
                             <div class="col-6">
-                                <i class="fas fa-clock"></i> 5 dias atrás</div>
+                                <i class="fas fa-clock"></i> {{ listing.list_date | timesince }}</div>
                         </div>
                         <hr>
-                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
+                        <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Mais informações</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Listing 2 -->
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card listing-preview">
-                    <img class="card-img-top" src="assets/img/homes/home-2.jpg" alt="">
-                    <div class="card-img-overlay">
-                        <h2>
-                            <span class="badge badge-secondary text-white"> R$550,000</span>
-                        </h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="listing-heading text-center">
-                            <h4 class="text-primary"> Av Manoel Goulart, 25</h4>
-                            <p>
-                                <i class="fas fa-map-marker text-secondary"></i> Campo Grande MS, 01801</p>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-th-large"></i> m&sup2;: 3200</div>
-                            <div class="col-6">
-                                <i class="fas fa-car"></i> Garagem: 1</div>
-                        </div>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-bed"></i> Quartos: 4</div>
-                            <div class="col-6">
-                                <i class="fas fa-bath"></i> Banheiros: 2</div>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-user"></i> Patrícia Alves</div>
-                        </div>
-                        <div class="row text-secondary pb-2">
-                            <div class="col-6">
-                                <i class="fas fa-clock"></i> 8 dias atrás</div>
-                        </div>
-                        <hr>
-                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
-                    </div>
-                </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-md-12">
+                <p>Não existem imóveis em destaque.</p>
             </div>
-
-            <!-- Listing 3 -->
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card listing-preview">
-                    <img class="card-img-top" src="assets/img/homes/home-3.jpg" alt="">
-                    <div class="card-img-overlay">
-                        <h2>
-                            <span class="badge badge-secondary text-white">R$580,000</span>
-                        </h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="listing-heading text-center">
-                            <h4 class="text-primary"> Rua dos Castores, 1889</h4>
-                            <p>
-                                <i class="fas fa-map-marker text-secondary"></i> Bauru SP, 01915</p>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-th-large"></i> m&sup2;: 3107</div>
-                            <div class="col-6">
-                                <i class="fas fa-car"></i> Garagem: 0</div>
-                        </div>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-bed"></i> Quartos: 4</div>
-                            <div class="col-6">
-                                <i class="fas fa-bath"></i> Banheiros: 3</div>
-                        </div>
-                        <hr>
-                        <div class="row py-2 text-secondary">
-                            <div class="col-6">
-                                <i class="fas fa-user"></i> Alfredo Pereira</div>
-                        </div>
-                        <div class="row text-secondary pb-2">
-                            <div class="col-6">
-                                <i class="fas fa-clock"></i> 5 dias atrás</div>
-                        </div>
-                        <hr>
-                        <a href="listing.html" class="btn btn-primary btn-block">Mais informações</a>
-                    </div>
-                </div>
-            </div>
+            {% endif %}
 
         </div>
     </div>
