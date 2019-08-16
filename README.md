@@ -32,14 +32,24 @@
     ##### Run the initdb command again
     <code>initdb /usr/local/var/postgres</code>    
 
-    https://medium.com/@Umesh_Kafle/postgresql-and-postgis-installation-in-mac-os-87fa98a6814d
+    [Reference](https://medium.com/@Umesh_Kafle/postgresql-and-postgis-installation-in-mac-os-87fa98a6814d)
     
 - ### Create a DB
     #### Mac
-    <p>createdb imobdb</p>
+    
+    ##### Create a new database
+    <code>createdb imobdb</code>
+
+    ##### Enable PostGIS
+    <code>psql imobdb</code>
+    <p>This command should show the psql command prompt</p>
+
+    ![Screenshot Terminal](/screenshots/psql_command_prompt.png)
+
+    [Reference](https://medium.com/@Umesh_Kafle/postgresql-and-postgis-installation-in-mac-os-87fa98a6814d)    
     
 - ### Create a 'secrets.json' file with your SECRET_KEY, DB_USER and DB_PASSWORD;
-    ![Screenshot](/screenshots/secrets_json.png)
+    ![Screenshot JSON](/screenshots/secrets_json.png)
 
 - Create a venv with Python 3.7
 - pip install -r requirements.txt;
