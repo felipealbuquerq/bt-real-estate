@@ -52,6 +52,7 @@
     ![Screenshot JSON](/screenshots/secrets_json.png)
 
 - Create a venv with Python 3.7
+- python -m pip install django or python3 -m pip install django
 - pip install -r requirements.txt;
 - python manage.py makemigrations && python manage.py migrate;
 - python manage.py runserver;
